@@ -5,14 +5,14 @@ const Form1 = ({ data, setData }) => {
 
   const {register,handleSubmit,formState:{errors},}=useForm();
       const onSubmit =(formValues)=>{console.log(formValues)
-        setData(...data,formValues)
+        setData(...data,...formValues)
       };
 
   return (
     <div className="form-container">
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="name">名前:</label>
+        <label htmlFor="name">Name:</label>
         <input type="text" {...register("name",{required: "Need to fill name"})} 
         
         
