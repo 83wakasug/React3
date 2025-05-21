@@ -4,13 +4,18 @@ import { useForm } from 'react-hook-form';
 const Form2 = ({ data, setData, activeData, setActiveData }) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
+  const [selectedSalary, setSelectedSalary] = useState('');
+  
+  const handleSalaryChange = (event) => {
+    setSelectedSalary(event.target.value);
+  };
 
 
   const options = [
-    { value: '500ドル未満', label: '500' },
-    { value: '500〜1000ドル', label: '1000' },
-    { value: '1000〜2000ドル', label: '2000' },
-    { value: '2000ドル以上', label: '2000+' }
+    { value: 'Under $500', label: 'Under $500' },
+    { value: '$500–$1000', label: '$500–$1000' },
+    { value: '$1000–$2000', label: '$1000–$2000' },
+    { value: 'Over $2000', label: 'Over $2000' }
   ];
 
 
@@ -42,7 +47,11 @@ const Form2 = ({ data, setData, activeData, setActiveData }) => {
         <label htmlFor="salary">Salary Range:</label>
         <select
           id="salary"
-          {...register('salary', { required: '給与レンジを選択してください。' })}
+          {...register('salary', { required: 'Please select a salary range.' })}
+          onChange={(e)=>{
+              handleSalaryChange(e);
+          }
+        }
         >
           <option value="">Choose one</option>
           {options.map((option) => (
@@ -51,7 +60,16 @@ const Form2 = ({ data, setData, activeData, setActiveData }) => {
             </option>
           ))}
         </select>
-        {errors.salary && <p style={{ color: 'red' }}>{errors.salary.message}</p>}
+        {errors.salary && <p>{errors.salary.message}</p>}
+        {selectedSalary === 'Under $500' && (
+          <p style={{ color: 'gray', fontStyle: 'italic' }}>
+            This is a small loan amount. Approval is easier.
+         </p>
+        )}
+     
+        <label htmlFor="amount ">Desired loan amount :</label>
+        <input type="number" id="amount" {...register("amount",{required: "Need to fill loan amount"})} />
+        <p>{errors.amount?.message}</p>
 
         <button type="button" onClick={handleBack}>Back</button>{' '}
         <button type="submit">Next</button>

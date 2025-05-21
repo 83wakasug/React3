@@ -28,6 +28,8 @@ const Form1 = ({ data, setData ,activeData,setActiveData }) => {
         <input type="number" id="age" {...register("age",{required: "Need to fill Age"})} />
         <p>{errors.age?.message}</p>
 
+
+
         <button type="submit">next</button>
         
       </form>
