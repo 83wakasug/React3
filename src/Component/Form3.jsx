@@ -13,6 +13,7 @@ const Form3 = ({ data, setData, activeData, setActiveData }) => {
   const onSubmit = (formValues) => {
     setData({ ...data, ...formValues });
     setActiveData(activeData + 1);
+    console.log(formValues);
   };
 
   const handleBack = () => {
