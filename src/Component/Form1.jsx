@@ -18,7 +18,7 @@ const Form1 = ({ data, setData, activeData, setActiveData }) => {
   return (
 <div
   className="min-h-screen flex justify-center items-center bg-gray-50"
-  style={{ width: '100vw', margin: 0, padding: 0, boxSizing: 'border-box' }}
+  style={{ width: '80vw', margin: 0, padding: 0, boxSizing: 'border-box' }}
 >
   <form
     onSubmit={handleSubmit(onSubmit)}
